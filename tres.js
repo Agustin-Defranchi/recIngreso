@@ -24,15 +24,22 @@ Curso de ingreso UTN FRA
 	let cantidad;
 	let precio ;
 	let salir;
-	let precioTotal;
+	let precioTotal=0;
 	let precioUnidad;
 	let contfelipe=0;
 	let contArgentina=0;
 	let contiluminatis=0;
-	let descuentoArgentina;
-	let descuentoFeliepe;
+	let descuentoArgentina=0;
+	let descuentoFeliepe=0;
 	let precioDescFelip;
 	let precioDescArgentina;
+	let perdidas;
+	let cantargentina=0;
+	let cantfelipe=0;
+	let cantiluminatis=0;
+	let promfelipe;
+	let promargentina;
+	let promiluminatis;
 
 	do
 	{
@@ -66,6 +73,7 @@ Curso de ingreso UTN FRA
 		if(marca=="felipelamparas")
 		{
 			contfelipe++;
+			cantfelipe+=cantidad;
 			if(cantidad>5)
 			{
 				descuentoFeliepe = precioUnidad * 10/100;
@@ -76,16 +84,21 @@ Curso de ingreso UTN FRA
 		else if(marca=="argentinaluz")
 		{
 			contArgentina++;
+			cantargentina+=cantidad;
 			if(cantidad>=3)
 			{
 				descuentoArgentina = precioUnidad * 5/100;
 				precioDescArgentina=precioUnidad - descuentoArgentina;
 			}
+
+
 		}
 		else
 		{
 			contiluminatis++;
+			cantiluminatis+=cantidad;
 		}
+
 
 
 		
@@ -96,6 +109,50 @@ Curso de ingreso UTN FRA
 
 	alert("la empreza recauda un total de: "+precioTotal);
 
+	perdidas =(precioTotal - descuentoArgentina)-descuentoFeliepe;
+	alert("las perdidas por el descuento es de: "+perdidas);
+
+	if(contfelipe!=0)
+	{
+		promfelipe = cantfelipe/contfelipe;
+	}
+	else
+	{
+		promfelipe = 0;
+	}
+
+	if(contArgentina!=0)
+	{
+		promargentina = cantargentina / contArgentina;
+	}
+	else
+	{
+		promargentina =0;
+	}
+
+	if (contiluminatis!=0)
+	{
+		promiluminatis = cantiluminatis / contiluminatis;
+	}
+	else
+	{
+		promiluminatis=0;
+	}
+
+	alert("el promedio de la cantidad de lamparas vendidas es de: FelipeLamparas: "+promfelipe+" ArgentinaLuz: "+promargentina+" Illuminatis: "+promiluminatis);
+
+	if(contfelipe > contArgentina && contfelipe > contiluminatis)
+	{
+		alert("la marca que mas ventas realizo es FelipeLamparas");
+	}
+	else if(contArgentina >= contfelipe && contArgentina > contiluminatis)
+	{
+		alert("la marca que mas ventas realizo es argentinaluz");
+	}
+	else
+	{
+		alert("la marca que mas ventas realizo es Illuminatis");
+	}
 }
 
 /*
